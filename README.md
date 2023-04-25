@@ -1,1 +1,51 @@
-# three.js-  學習紀錄
+# THREE.js筆記紀錄01
+
+利用parcel搭建three.js開發環境
+```
+npm run dev 
+```
+創建場景
+```
+const scene = new THREE.Scene();
+```
+創建透視相機 　- fov 可視角度 - aspect 窗口比例 - near 近處截面距離- far 遠處的截面面距離
+```
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+```
+相機位置
+```
+camera.position.set(0,0,10);
+```
+相機添加置場景
+```
+scene.add(camera);
+```
+創建幾何體
+```
+const cubeGeometry = new THREE.BoxGeometry(1,1,1);
+const cubeMaterial = new THREE.MeshBasicMaterial({Color:0xffff000});
+```
+根據幾何體和材質創建物體
+```
+const cube = new THREE.Mesh(cubeGeometry,cubeMaterial);
+```
+將幾何體添加置場景
+```
+scene.add(cube);
+```
+初始化渲染器
+```
+const renderer = new THREE.WebGL1Renderer();
+```
+設置渲染尺寸大小
+```
+renderer.setSize(window.innerWidth,window.innerHeight);
+```
+將webgl渲染的內容添加置body
+```
+document.body.appendChild(renderer.domElement);
+```
+使用渲染器,通過相機將場景渲染出來
+```
+renderer.render(scene,camera);
+```
